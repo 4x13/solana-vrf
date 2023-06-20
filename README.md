@@ -39,3 +39,8 @@ Program Id: 2tqa84LLK7E3hUWbQ9AoAUJMjmHEb26je4xjzEeRuBF8
 ```
 
 #### caveat we need change Program Id in the backend!
+
+## Cost in devnet
+
+I spent near to 2-4 SOL to be able to deploy the contract. 
+
