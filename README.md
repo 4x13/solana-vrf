@@ -1,18 +1,19 @@
-# Orao Solana VRF SDKs
+# How to setup 
 
-This repository provides off-chain Rust and JS web3 SDKs for requesting on-chain
-randomness using ORAO VRF contract.
+We should have the following stuff:
 
-Browse through [js SDK](https://github.com/orao-network/solana-vrf/tree/master/js) and [rust SDK](https://github.com/orao-network/solana-vrf/tree/master/rust) subdirectories for more info. We've made an [in-depth VRF integration guide](https://solanacookbook.com/integrations/orao-vrf.html#basic-usage-scenario) on Solana's Cookbook.
+- solana-cli 1.16.0 (src:e0fcdbb0; feat:2891131721, client:SolanaLabs)
+- rustc 1.70.0 (90c541806 2023-05-31)
+- anchor-cli 0.28.0
 
-### How to run a test validator.
+we should install: (ubuntu 20x)
 
-Note that `anchor test` will run it for the [cpi](rust/examples/cpi) tests.
+- Solana's Install Tool
+sh -c "$(curl -sSfL https://release.solana.com/v1.16.0/install)"
 
-Here is an example:
+- anchor install 
+cargo install --git https://github.com/coral-xyz/anchor --tag v0.28.0 anchor-cli --locked
 
-```sh
-solana-test-validator -r \
-    --bpf-program VRFzZoJdhFWL8rkvu87LpKM3RbcVezpMEc6X5GVDr7y js/dist/orao_vrf.so \
-    --ledger /tmp/test-ledger
-```
+- rustc 1.70.0 (90c541806 2023-05-31)
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
