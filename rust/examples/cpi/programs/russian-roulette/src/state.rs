@@ -53,7 +53,8 @@ pub enum CurrentState {
 pub fn current_state(randomness: &Randomness) -> CurrentState {
     if let Some(randomness) = randomness.fulfilled() {
         if is_dead(randomness) {
-            CurrentState::Dead
+            CurrentState::Alive
+            // CurrentState::Dead
         } else {
             CurrentState::Alive
         }
@@ -62,7 +63,7 @@ pub fn current_state(randomness: &Randomness) -> CurrentState {
     }
 }
 
-/// Decides whether player is dead or alive.
+// Decides whether player is dead or alive.
 fn is_dead(randomness: &[u8; 64]) -> bool {
     // use only first 8 bytes for simplicyty
     let value = randomness[0..size_of::<u64>()].try_into().unwrap();

@@ -1,14 +1,14 @@
 [features]
 seeds = false
 skip-lint = false
-[programs.localnet]
-russian_roulette = "DTHCPBTw6tFZDwbiSzKXXK8wQ7n7v5zJAH3Ex3uvoSK5"
+[programs.devnet]
+russian_roulette = "iyvFKe3NuJEpKVuPznNJQUUDiFt4Ho9UZefe3RHVnrm"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

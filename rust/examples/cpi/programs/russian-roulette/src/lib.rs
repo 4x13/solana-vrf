@@ -8,7 +8,7 @@ use orao_solana_vrf::CONFIG_ACCOUNT_SEED;
 use orao_solana_vrf::RANDOMNESS_ACCOUNT_SEED;
 use state::PlayerState;
 
-declare_id!("DTHCPBTw6tFZDwbiSzKXXK8wQ7n7v5zJAH3Ex3uvoSK5");
+declare_id!("iyvFKe3NuJEpKVuPznNJQUUDiFt4Ho9UZefe3RHVnrm");
 
 pub const PLAYER_STATE_ACCOUNT_SEED: &[u8] = b"russian-roulette-player-state";
 
@@ -62,6 +62,15 @@ pub mod russian_roulette {
 
         Ok(())
     }
+
+    pub fn reset_state(ctx: Context<ResetState>) -> Result<()> {
+        let player_state = &mut ctx.accounts.player_state;
+
+        **player_state = PlayerState::new(*ctx.accounts.player.as_ref().key);
+        player_state.rounds = 0;
+
+        Ok(())
+    }
 }
 
 #[derive(Accounts)]
@@ -107,6 +116,21 @@ pub struct SpinAndPullTheTrigger<'info> {
     config: Account<'info, NetworkState>,
     vrf: Program<'info, OraoVrf>,
     system_program: Program<'info, System>,
+}
+
+#[derive(Accounts)]
+pub struct ResetState<'info> {
+    #[account(mut)]
+    player: Signer<'info>,
+    #[account(
+        mut,
+        seeds = [
+            PLAYER_STATE_ACCOUNT_SEED,
+            player.key().as_ref()
+        ],
+        bump
+    )]
+    player_state: Account<'info, PlayerState>,
 }
 
 #[error_code]
